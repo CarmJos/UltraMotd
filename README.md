@@ -13,7 +13,6 @@
 [![Download](https://img.shields.io/github/downloads/CarmJos/UltraMOTD/total)](https://github.com/CarmJos/UltraMOTD/releases)
 [![Java CI with Maven](https://github.com/CarmJos/UltraMOTD/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/CarmJos/UltraMOTD/actions/workflows/maven.yml)
 ![Support](https://img.shields.io/badge/Minecraft-Java%201.8--Latest-blue)
-![](https://visitor-badge.glitch.me/badge?page_id=UltraMOTD.readme)
 
 为 BungeeCord 制作的MOTD(消息介绍)插件，支持定制各类消息、分IP反馈介绍内容、随机消息轮换等功能。
 
@@ -57,7 +56,7 @@
 
 ## 使用统计
 
-[![bStats](https://bstats.org/signatures/bukkit/UltraMOTD.svg)](https://bstats.org/plugin/bukkit/UltraMOTD/18596)
+[![bStats](https://bstats.org/signatures/bungeecord/UltraMOTD.svg)](https://bstats.org/plugin/bungeecord/UltraMOTD/18596)
 
 ## 支持与捐赠
 
