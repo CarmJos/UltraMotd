@@ -25,9 +25,7 @@
 ### 优势
 
 ## [依赖](https://github.com/CarmJos/UltraMOTD/network/dependencies)
-
-- **[必须]** 插件本体基于 [BungeeCord]()。
-  实现。
+- **[必须]** 插件本体基于 [BungeeCord]() 实现。
 - **[自带]** 消息格式基于 [MineDown](https://github.com/Phoenix616/MineDown) 实现。
     - 所有 messages.yml 均支持 MineDown 语法。
 
