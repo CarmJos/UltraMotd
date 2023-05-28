@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <project.jdk.version>8</project.jdk.version>
+        <project.package>${project.groupId}.ultramotd</project.package>
+
+        <maven.compiler.source>${project.jdk.version}</maven.compiler.source>
+        <maven.compiler.target>${project.jdk.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+
+        <easyplugin.version>1.5.5</easyplugin.version>
+        <mineconfig.version>2.6.1</mineconfig.version>
+    </properties>
+    <groupId>cc.carm.plugin</groupId>
+    <artifactId>ultramotd</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>de.themoep</groupId>
+            <artifactId>minedown</artifactId>
+            <version>1.7.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cc.carm.lib</groupId>
+            <artifactId>easyplugin-utils</artifactId>
+            <version>${easyplugin.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>cc.carm.lib</groupId>
+            <artifactId>easyplugin-githubchecker</artifactId>
+            <version>${easyplugin.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>cc.carm.lib</groupId>
+            <artifactId>mineconfiguration-bungee</artifactId>
+            <version>${mineconfig.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.waterfallmc</groupId>
+            <artifactId>waterfall-api</artifactId>
+            <version>1.18-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>23.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <name>UltraMOTD</name>
+    <description>
+        超级介绍展示(MOTD)，适用于BungeeCord的MOTD展示插件，支持定制各类消息、分IP反馈介绍内容、随机消息轮换等功能。
+    </description>
+    <url>https://github.com/CarmJos/UltraMOTD</url>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/CarmJos/UltraMOTD/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>GitHub Actions</system>
+        <url>https://github.com/CarmJos/UltraMOTD/actions/workflows/maven.yml</url>
+    </ciManagement>
+
+    <developers>
+        <developer>
+            <id>CarmJos</id>
+            <name>Carm Jos</name>
+            <email>carm@carm.cc</email>
+            <url>https://work.carm.cc</url>
+        </developer>
+    </developers>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+
+        <repository>
+            <id>placeholder-api-repo</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+
+        <repository>
+            <id>oss-repo</id>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+        </repository>
+
+        <repository>
+            <id>nexus</id>
+            <url>https://mvn.lumine.io/repository/maven-public/</url>
+        </repository>
+
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+
+        <repository>
+            <id>minebench-repo</id>
+            <url>https://repo.minebench.de/</url>
+        </repository>
+
+        <repository>
+            <id>essentials-repo</id>
+            <url>https://repo.essentialsx.net/releases/</url>
+        </repository>
+
+        <repository>
+            <id>carm-repo</id>
+            <name>Carm's Repo</name>
+            <url>https://repo.carm.cc/repository/maven-public/</url>
+        </repository>
+
+    </repositories>
+
+    <distributionManagement>
+        <downloadUrl>https://github.com/CarmJos/UltraMOTD/releases</downloadUrl>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/CarmJos/UltraMOTD</url>
+        </repository>
+    </distributionManagement>
+
+
+</project>
