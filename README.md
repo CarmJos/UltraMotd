@@ -18,6 +18,8 @@
 
 项目代码符合开发规范，适合新手开发者学习BungeeCord-API，制作属于自己的插件。
 
+![example](.doc/images/example.png)
+
 ## 功能与优势
 
 ### 当前功能
