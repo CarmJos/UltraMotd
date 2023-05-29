@@ -2,7 +2,6 @@ package cc.carm.plugin.ultramotd.conf;
 
 import cc.carm.lib.configuration.core.ConfigurationRoot;
 import cc.carm.lib.configuration.core.annotation.HeaderComment;
-import cc.carm.lib.configuration.core.value.ConfigValue;
 import cc.carm.lib.configuration.core.value.type.ConfiguredList;
 import cc.carm.lib.configuration.core.value.type.ConfiguredValue;
 import cc.carm.lib.mineconfiguration.bungee.value.ConfiguredMessageList;
@@ -17,14 +16,18 @@ public class PluginConfig extends ConfigurationRoot {
             "该选项用于帮助开发者统计插件版本与使用情况，且绝不会影响性能与使用体验。",
             "当然，您也可以选择在这里关闭，或在plugins/bStats下的配置文件中关闭。"
     })
-    public static final ConfigValue<Boolean> METRICS = ConfiguredValue.of(Boolean.class, true);
+    public static final ConfiguredValue<Boolean> METRICS = ConfiguredValue.of(Boolean.class, true);
 
     @HeaderComment({
             "检查更新设定",
             "该选项用于插件判断是否要检查更新，若您不希望插件检查更新并提示您，可以选择关闭。",
             "检查更新为异步操作，绝不会影响性能与使用体验。"
     })
-    public static final ConfigValue<Boolean> CHECK_UPDATE = ConfiguredValue.of(Boolean.class, true);
+    public static final ConfiguredValue<Boolean> CHECK_UPDATE = ConfiguredValue.of(Boolean.class, true);
+
+
+    @HeaderComment({"MOTD显示缓存时间（毫秒）", "若此配置项≤0，则不启用缓存。"})
+    public static final ConfiguredValue<Long> CACHE_MILLIS = ConfiguredValue.of(Long.class, 500L);
 
     @HeaderComment("维护模式配置")
     public static final class MAINTENANCE extends ConfigurationRoot {

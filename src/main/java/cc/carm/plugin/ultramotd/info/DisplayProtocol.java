@@ -1,6 +1,7 @@
 package cc.carm.plugin.ultramotd.info;
 
 import net.md_5.bungee.api.ServerPing;
+import net.md_5.bungee.config.Configuration;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,7 +17,7 @@ public class DisplayProtocol {
 
     public @NotNull ServerPing.Protocol apply(ServerPing.Protocol protocol) {
         if (getName() != null) protocol.setName(getName());
-        if (getVersion() != null) protocol.setProtocol(getVersion());
+        if (getVersion() != null && getVersion() > 0) protocol.setProtocol(getVersion());
         return protocol;
     }
 
@@ -27,4 +28,11 @@ public class DisplayProtocol {
     public @Nullable Integer getVersion() {
         return version;
     }
+
+    public static DisplayProtocol parse(Configuration section) {
+        String name = section.getString("name");
+        Integer version = section.getInt("version");
+        return new DisplayProtocol(name, version);
+    }
+
 }

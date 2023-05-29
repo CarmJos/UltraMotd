@@ -5,11 +5,15 @@ import java.util.function.UnaryOperator;
 @FunctionalInterface
 public interface PlayerMathFunction extends UnaryOperator<Integer> {
 
+    static PlayerMathFunction identity() {
+        return t -> t;
+    }
+
     static PlayerMathFunction multiple() {
         return input -> input * 2;
     }
 
-    static PlayerMathFunction dynamicAdd() {
+    static PlayerMathFunction dynamic() {
         return input -> {
             if (input < 5) {
                 return input * 2;
@@ -26,5 +30,6 @@ public interface PlayerMathFunction extends UnaryOperator<Integer> {
     static PlayerMathFunction zero() {
         return input -> 0;
     }
+
 
 }

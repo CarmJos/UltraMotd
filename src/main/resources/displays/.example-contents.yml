@@ -25,12 +25,12 @@ protocol:
   version: 0 # 协议版本号，留空或<=0则采用BC配置
 
 # 显示的服务器模组类型，可选 FML / BUKKIT / VANILLA
-mod-type: FML
+mod-type: VANILLA
 
-# 服务器图片的名称，请将原图放置在插件配置文件夹中的icons文件夹内
-icon: "/icons/example.png"
+# 服务器图片的名称，请将原图放置在插件配置文件夹中的favicons文件夹内
+favicon: "example.png"
 
-# 域名匹配表；配置后将根据玩家使用的服务器域名来显示对应的消息
+# 域名正则匹配表，配置后将根据玩家使用的服务器域名来显示对应的消息。
 # 留空后，玩家使用的域名未匹配任何限定内容时，将显示该内容。
 hostnames:
-  - "*.example.com"
+  - "[a-z0-9-]+\.example\.com"
