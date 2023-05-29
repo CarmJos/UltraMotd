@@ -18,7 +18,7 @@ jobs:
       - name: "Set up JDK"
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'adopt'
           cache: maven
           server-id: github
@@ -34,7 +34,7 @@ jobs:
         run: |
           mkdir artifacts
           cp -vrf target/ artifacts/target/
-          cp -vrf asset/*.jar artifacts
+          cp -vrf .asset/*.jar artifacts
 
       - name: "Upload artifact"
         uses: actions/upload-artifact@v2
