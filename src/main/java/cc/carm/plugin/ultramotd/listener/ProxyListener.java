@@ -20,7 +20,6 @@ public class ProxyListener implements Listener {
     public void onPing(ProxyPingEvent event) {
         DisplayManager manager = Main.getDisplayManager();
 
-
         DisplayContent content;
         if (PluginConfig.MAINTENANCE.ENABLE.getNotNull()) {
             content = manager.getContents().get(PluginConfig.MAINTENANCE.DISPLAY.getNotNull());
@@ -56,7 +55,6 @@ public class ProxyListener implements Listener {
         BaseComponent[] messages = PluginConfig.MAINTENANCE.KICK_MESSAGE.parseToLine(null);
         if (messages != null) event.setCancelReason(messages);
         event.setCancelled(true);
-
     }
 
 }

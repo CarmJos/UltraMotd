@@ -1,6 +1,7 @@
 package cc.carm.plugin.ultramotd.command.maintenance;
 
 import cc.carm.plugin.ultramotd.Main;
+import cc.carm.plugin.ultramotd.command.sub.MaintenanceCommands;
 import cc.carm.plugin.ultramotd.command.utils.SubCommand;
 import cc.carm.plugin.ultramotd.conf.PluginConfig;
 import cc.carm.plugin.ultramotd.conf.PluginMessages;

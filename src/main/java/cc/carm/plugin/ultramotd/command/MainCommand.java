@@ -1,6 +1,6 @@
 package cc.carm.plugin.ultramotd.command;
 
-import cc.carm.plugin.ultramotd.command.maintenance.MaintenanceCommands;
+import cc.carm.plugin.ultramotd.command.sub.MaintenanceCommands;
 import cc.carm.plugin.ultramotd.command.sub.DisplayCommand;
 import cc.carm.plugin.ultramotd.command.sub.ReloadCommand;
 import cc.carm.plugin.ultramotd.command.utils.CommandHandler;
@@ -14,7 +14,7 @@ public class MainCommand extends CommandHandler {
     public MainCommand(@NotNull Plugin plugin) {
         super(plugin);
         registerSubCommand(new DisplayCommand(this, "display", "show"));
-        registerHandler(new MaintenanceCommands(plugin, this));
+        registerHandler(new MaintenanceCommands(plugin, this, "maintenance", "mt"));
         registerSubCommand(new ReloadCommand(this, "reload", "rl"));
     }
 

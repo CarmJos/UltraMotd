@@ -1,6 +1,7 @@
 package cc.carm.plugin.ultramotd.command.maintenance;
 
 import cc.carm.plugin.ultramotd.Main;
+import cc.carm.plugin.ultramotd.command.sub.MaintenanceCommands;
 import cc.carm.plugin.ultramotd.command.utils.SubCommand;
 import cc.carm.plugin.ultramotd.conf.PluginConfig;
 import cc.carm.plugin.ultramotd.conf.PluginMessages;
@@ -23,6 +24,11 @@ public class ToggleCommand extends SubCommand<MaintenanceCommands> {
         } else {
             PluginConfig.MAINTENANCE.ENABLE.set(true);
             PluginMessages.MAINTENANCE.ENABLED.send(sender);
+            if (PluginConfig.MAINTENANCE.KICK_ONLINE.getNotNull()) {
+                Main.getInstance().getProxy().getPlayers().stream()
+                        .filter(p -> PluginConfig.MAINTENANCE.ALLOWED_PLAYERS.stream().noneMatch(s -> p.getName().equalsIgnoreCase(s)))
+                        .forEach(player -> player.disconnect(PluginConfig.MAINTENANCE.KICK_MESSAGE.parseToLine(player)));
+            }
         }
 
         Main.getInstance().getConfigProvider().save();

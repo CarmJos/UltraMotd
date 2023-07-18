@@ -38,6 +38,9 @@ public class PluginConfig extends ConfigurationRoot {
         @HeaderComment("维护模式下使用的显示配置ID")
         public static final ConfiguredValue<String> DISPLAY = ConfiguredValue.of(String.class, "maintenance");
 
+        @HeaderComment("启用维护模式时，是否提出已在线玩家。")
+        public static final ConfiguredValue<Boolean> KICK_ONLINE = ConfiguredValue.of(Boolean.class, true);
+
         @HeaderComment("非白名单玩家进入服务器时的提示信息")
         public static final ConfiguredMessageList<BaseComponent[]> KICK_MESSAGE = PluginMessages.list()
                 .defaults("服务器正在维护中，请稍后再试。").build();
