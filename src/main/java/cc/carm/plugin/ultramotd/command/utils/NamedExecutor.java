@@ -25,7 +25,7 @@ public interface NamedExecutor {
     default Void sendMessage(@NotNull CommandSender sender,
                              @Nullable UnaryOperator<String> parser,
                              @NotNull String... messages) {
-        if (messages == null || messages.length == 0) return null;
+        if (messages.length == 0) return null;
         UnaryOperator<String> finalParser = Optional.ofNullable(parser).orElse(UnaryOperator.identity());
         Arrays.stream(messages).map(finalParser).forEach(sender::sendMessage);
         return null;
