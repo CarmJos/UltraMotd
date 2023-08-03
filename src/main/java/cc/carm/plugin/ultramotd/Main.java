@@ -52,8 +52,9 @@ public class Main extends Plugin {
 
         if (PluginConfig.METRICS.getNotNull()) {
             log("启用统计数据...");
-            new Metrics(this, 13777);
+            new Metrics(this, 18596);
         }
+
         if (PluginConfig.CHECK_UPDATE.getNotNull()) {
             log("开始检查更新...");
             UpdateChecker.checkUpdate(this);
