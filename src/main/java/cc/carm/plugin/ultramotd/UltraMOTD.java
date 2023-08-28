@@ -4,9 +4,11 @@ import cc.carm.plugin.ultramotd.manager.DisplayManager;
 
 public final class UltraMOTD {
 
+    private UltraMOTD() {
+    }
+
     public static DisplayManager getDisplayManager() {
         return Main.getDisplayManager();
     }
-
 
 }

@@ -35,7 +35,7 @@ public class DisplayManager {
             BufferedImage img = ImageIO.read(new File(folder, path));
             return Favicon.create(img);
         } catch (IOException e) {
-            Main.error("无法读取图标文 [" + path + "] 请检查配置文件：" + e.getLocalizedMessage());
+            Main.error("无法读取图标 [" + path + "] 请检查配置文件：" + e.getLocalizedMessage());
             e.printStackTrace();
             return null;
         }

@@ -7,6 +7,10 @@ import cc.carm.lib.configuration.core.value.type.ConfiguredValue;
 import cc.carm.lib.mineconfiguration.bungee.value.ConfiguredMessageList;
 import net.md_5.bungee.api.chat.BaseComponent;
 
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+
 public class PluginConfig extends ConfigurationRoot {
 
     public static final ConfiguredValue<Boolean> DEBUG = ConfiguredValue.of(Boolean.class, false);
