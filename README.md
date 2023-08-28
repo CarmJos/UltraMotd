@@ -19,6 +19,7 @@
 项目代码符合开发规范，适合新手开发者学习BungeeCord-API，制作属于自己的插件。
 
 ![example](.doc/images/example.png)
+> 图示上方IP为 “Kar.RED”，而下方为 “DEV.Kar.RED”，均指向同一个BungeeCord，但显示不同介绍内容。
 
 ## 功能与优势
 
