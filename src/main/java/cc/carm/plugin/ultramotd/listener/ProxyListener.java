@@ -2,6 +2,7 @@ package cc.carm.plugin.ultramotd.listener;
 
 import cc.carm.plugin.ultramotd.Main;
 import cc.carm.plugin.ultramotd.conf.PluginConfig;
+import cc.carm.plugin.ultramotd.event.MOTDResponseEvent;
 import cc.carm.plugin.ultramotd.info.DisplayContent;
 import cc.carm.plugin.ultramotd.manager.DisplayManager;
 import net.md_5.bungee.api.ServerPing;
@@ -27,18 +28,22 @@ public class ProxyListener implements Listener {
             content = manager.getDisplay(event.getConnection().getVirtualHost());
         }
 
-        if (content == null) return;
+        MOTDResponseEvent responseEvent = new MOTDResponseEvent(event.getConnection(), content);
+        Main.getInstance().getProxy().getPluginManager().callEvent(responseEvent);
+
+        DisplayContent response = responseEvent.getContent();
+        if (response == null) return;
 
         ServerPing ping;
 
         ServerPing provided = Optional.ofNullable(event.getResponse()).orElse(new ServerPing());
         if (manager.getCache() == null) {
-            ping = content.applyTo(provided);
+            ping = response.applyTo(provided);
         } else {
             try {
-                ping = manager.getCache().get(content.getID(), () -> content.applyTo(provided));
+                ping = manager.getCache().get(response.getID(), () -> response.applyTo(provided));
             } catch (ExecutionException e) {
-                ping = content.applyTo(provided);
+                ping = response.applyTo(provided);
             }
         }
 

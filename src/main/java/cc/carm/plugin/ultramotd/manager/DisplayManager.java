@@ -121,4 +121,17 @@ public class DisplayManager {
         return displays.get(0);
     }
 
+    public void addDisplay(@NotNull DisplayContent content) {
+        contents.put(content.getID(), content);
+    }
+
+    public void removeDisplay(@NotNull String id) {
+        contents.remove(id);
+    }
+
+    public void clearCache() {
+        if (cache == null) return;
+        cache.cleanUp();
+    }
+
 }
