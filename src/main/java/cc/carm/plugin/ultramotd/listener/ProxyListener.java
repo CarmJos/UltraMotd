@@ -12,6 +12,7 @@ import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
+import java.time.LocalTime;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
@@ -22,7 +23,7 @@ public class ProxyListener implements Listener {
         DisplayManager manager = Main.getDisplayManager();
 
         DisplayContent content;
-        if (PluginConfig.MAINTENANCE.ENABLE.getNotNull()) {
+        if (isMaintenance()) {
             content = manager.getContents().get(PluginConfig.MAINTENANCE.DISPLAY.getNotNull());
         } else {
             content = manager.getDisplay(event.getConnection().getVirtualHost());
@@ -52,7 +53,7 @@ public class ProxyListener implements Listener {
 
     @EventHandler
     public void onJoin(PreLoginEvent event) {
-        if (!PluginConfig.MAINTENANCE.ENABLE.getNotNull()) return;
+        if (!isMaintenance()) return;
 
         String username = event.getConnection().getName();
         if (PluginConfig.MAINTENANCE.ALLOWED_PLAYERS.stream().anyMatch(s -> s.equalsIgnoreCase(username))) return;
@@ -60,6 +61,21 @@ public class ProxyListener implements Listener {
         BaseComponent[] messages = PluginConfig.MAINTENANCE.KICK_MESSAGE.parseToLine(null);
         if (messages != null) event.setCancelReason(messages);
         event.setCancelled(true);
+    }
+
+    public boolean isMaintenance() {
+        if (PluginConfig.MAINTENANCE.ENABLE.getNotNull()) return true;
+        if (!PluginConfig.MAINTENANCE.SCHEDULE.ENABLE.getNotNull()) return false;
+
+        LocalTime start = PluginConfig.MAINTENANCE.SCHEDULE.START.getNotNull();
+        LocalTime end = PluginConfig.MAINTENANCE.SCHEDULE.END.getNotNull();
+
+        LocalTime now = LocalTime.now();
+        if (start.isBefore(end)) {
+            return now.isAfter(start) && now.isBefore(end);
+        } else {
+            return now.isAfter(start) || now.isBefore(end);
+        }
     }
 
 }

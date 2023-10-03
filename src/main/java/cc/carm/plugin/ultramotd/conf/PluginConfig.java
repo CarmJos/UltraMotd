@@ -7,9 +7,8 @@ import cc.carm.lib.configuration.core.value.type.ConfiguredValue;
 import cc.carm.lib.mineconfiguration.bungee.value.ConfiguredMessageList;
 import net.md_5.bungee.api.chat.BaseComponent;
 
-import java.time.Duration;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
 
 public class PluginConfig extends ConfigurationRoot {
 
@@ -42,7 +41,7 @@ public class PluginConfig extends ConfigurationRoot {
         @HeaderComment("维护模式下使用的显示配置ID")
         public static final ConfiguredValue<String> DISPLAY = ConfiguredValue.of(String.class, "maintenance");
 
-        @HeaderComment("启用维护模式时，是否提出已在线玩家。")
+        @HeaderComment("启用维护模式时，是否踢出已在线玩家。")
         public static final ConfiguredValue<Boolean> KICK_ONLINE = ConfiguredValue.of(Boolean.class, true);
 
         @HeaderComment("非白名单玩家进入服务器时的提示信息")
@@ -54,6 +53,36 @@ public class PluginConfig extends ConfigurationRoot {
                 .builderOf(String.class).fromString()
                 .defaults("CarmJos")
                 .build();
+
+        @HeaderComment("定时自动启动维护状态")
+        public static final class SCHEDULE extends ConfigurationRoot {
+
+            @HeaderComment("是否启用定时维护")
+            public static final ConfiguredValue<Boolean> ENABLE = ConfiguredValue.of(Boolean.class, false);
+
+            @HeaderComment("定时维护开始时间，格式为 00:00:00 (不足2位需要补0)")
+            public static final ConfiguredValue<LocalTime> START = ConfiguredValue.builderOf(LocalTime.class).fromString()
+                    .serializeValue(v -> v.format(DateTimeFormatter.ISO_LOCAL_TIME))
+                    .parseValue((v, d) -> {
+                        try {
+                            return LocalTime.parse(v, DateTimeFormatter.ISO_LOCAL_TIME);
+                        } catch (Exception e) {
+                            return d;
+                        }
+                    }).defaults(LocalTime.of(1, 30)).build();
+
+            @HeaderComment("定时维护结束时间，格式为 00:00:00 (不足2位需要补0)")
+            public static final ConfiguredValue<LocalTime> END = ConfiguredValue.builderOf(LocalTime.class).fromString()
+                    .serializeValue(v -> v.format(DateTimeFormatter.ISO_LOCAL_TIME))
+                    .parseValue((v, d) -> {
+                        try {
+                            return LocalTime.parse(v, DateTimeFormatter.ISO_LOCAL_TIME);
+                        } catch (Exception e) {
+                            return d;
+                        }
+                    }).defaults(LocalTime.of(12, 0)).build();
+
+        }
 
     }
 
