@@ -22,7 +22,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-          cache: maven
+#          cache: maven # 4UCK GITHUB CACHE SERVICE
           server-id: github
           server-username: MAVEN_USERNAME
           server-password: MAVEN_TOKEN
@@ -40,5 +40,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: asset/*.jar
+          asset_path: ".asset/*.jar"
           asset_content_type: application/java-archive
