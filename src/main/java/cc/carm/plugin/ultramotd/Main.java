@@ -41,8 +41,8 @@ public class Main extends Plugin {
 
         log("加载内容管理器...");
         this.displayManager = new DisplayManager();
-        this.displayManager.loadDisplays();
-        this.displayManager.loadCacheService();
+        this.displayManager.reloadDisplays();
+        this.displayManager.reloadCacheService();
 
         log("注册监听器...");
         ProxyServer.getInstance().getPluginManager().registerListener(this, new ProxyListener());

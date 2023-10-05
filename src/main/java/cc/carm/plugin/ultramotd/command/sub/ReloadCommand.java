@@ -21,8 +21,8 @@ public class ReloadCommand extends SubCommand<MainCommand> {
         try {
             Main.getInstance().getConfigProvider().reload();
             Main.getInstance().getMessageProvider().reload();
-            Main.getDisplayManager().loadDisplays();
-            Main.getDisplayManager().loadCacheService();
+            Main.getDisplayManager().reloadDisplays();
+            Main.getDisplayManager().reloadCacheService();
             PluginMessages.RELOAD.SUCCESS.send(sender, (System.currentTimeMillis() - s1), Main.getDisplayManager().getContents().size());
         } catch (Exception ex) {
             PluginMessages.RELOAD.FAILED.send(sender);

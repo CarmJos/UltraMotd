@@ -19,14 +19,19 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class DisplayManager {
 
-    protected Map<String, DisplayContent> contents = new LinkedHashMap<>();
-    protected Cache<String, ServerPing> cache;
+    protected @NotNull Map<String, DisplayContent> contents = new LinkedHashMap<>();
+    protected @Nullable Cache<String, ServerPing> cache;
+
+    protected @Nullable LocalDate skipUntil = null;
 
     public Favicon loadFavicon(String path) {
         File pluginFolder = Main.getInstance().getDataFolder();
@@ -42,7 +47,7 @@ public class DisplayManager {
     }
 
 
-    public void loadDisplays() {
+    public void reloadDisplays() {
         Main.log(" 开始加载内容配置...");
         long start = System.currentTimeMillis();
 
@@ -80,7 +85,7 @@ public class DisplayManager {
         Main.log("	显示配置加载完成，共加载 " + data.size() + " 个配置，耗时 " + (System.currentTimeMillis() - start) + "ms 。");
     }
 
-    public void loadCacheService() {
+    public void reloadCacheService() {
         if (PluginConfig.CACHE_MILLIS.getNotNull() > 0) {
             this.cache = CacheBuilder.newBuilder()
                     .expireAfterWrite(PluginConfig.CACHE_MILLIS.getNotNull(), TimeUnit.MILLISECONDS)
@@ -92,11 +97,7 @@ public class DisplayManager {
         }
     }
 
-    public Cache<String, ServerPing> getCache() {
-        return cache;
-    }
-
-    public Map<String, DisplayContent> getContents() {
+    public @NotNull Map<String, DisplayContent> getContents() {
         return contents;
     }
 
@@ -121,6 +122,18 @@ public class DisplayManager {
         return displays.get(0);
     }
 
+    public @NotNull ServerPing applyContent(@NotNull DisplayContent content, @Nullable ServerPing original) {
+        ServerPing provided = Optional.ofNullable(original).orElse(new ServerPing());
+        if (this.cache == null) return content.applyTo(provided);
+
+        try {
+            return this.cache.get(content.getID(), () -> content.applyTo(provided));
+        } catch (ExecutionException e) {
+            return content.applyTo(provided);
+        }
+
+    }
+
     public void addDisplay(@NotNull DisplayContent content) {
         contents.put(content.getID(), content);
     }
@@ -132,6 +145,31 @@ public class DisplayManager {
     public void clearCache() {
         if (cache == null) return;
         cache.cleanUp();
+    }
+
+
+    public boolean isMaintenance() {
+        if (PluginConfig.MAINTENANCE.ENABLE.getNotNull()) return true;
+        if (!PluginConfig.MAINTENANCE.SCHEDULE.ENABLE.getNotNull()) return false;
+
+        if (skipUntil != null) {
+            if (skipUntil.isAfter(LocalDate.now()) || skipUntil.isEqual(LocalDate.now())) return false;
+            else skipUntil = null;
+        }
+
+        LocalTime start = PluginConfig.MAINTENANCE.SCHEDULE.START.getNotNull();
+        LocalTime end = PluginConfig.MAINTENANCE.SCHEDULE.END.getNotNull();
+
+        LocalTime now = LocalTime.now();
+        if (start.isBefore(end)) {
+            return now.isAfter(start) && now.isBefore(end);
+        } else {
+            return now.isAfter(start) || now.isBefore(end);
+        }
+    }
+
+    public void setSkipUntil(@Nullable LocalDate skipUntil) {
+        this.skipUntil = skipUntil;
     }
 
 }

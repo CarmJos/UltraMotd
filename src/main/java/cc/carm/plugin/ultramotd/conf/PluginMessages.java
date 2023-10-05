@@ -91,6 +91,14 @@ public class PluginMessages extends ConfigurationRoot {
                 .params("player")
                 .build();
 
+        public static final ConfiguredMessageList<BaseComponent[]> SCHEDULE_SKIP = list()
+                .defaults("&f已设置在 &e%(date) &f前都不再进入定时维护状态，共跳过 &e%(days) &f天。")
+                .params("date", "days")
+                .build();
+
+        public static final ConfiguredMessageList<BaseComponent[]> SCHEDULE_ENABLE = list()
+                .defaults("&f已清除定时维护的关闭期限，将自动启用维护模式。")
+                .build();
 
     }
 
