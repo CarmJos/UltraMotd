@@ -3,6 +3,7 @@ package cc.carm.plugin.ultramotd.command.sub;
 import cc.carm.plugin.ultramotd.command.MainCommand;
 import cc.carm.plugin.ultramotd.command.maintenance.AllowCommand;
 import cc.carm.plugin.ultramotd.command.maintenance.DenyCommand;
+import cc.carm.plugin.ultramotd.command.maintenance.SkipCommand;
 import cc.carm.plugin.ultramotd.command.maintenance.ToggleCommand;
 import cc.carm.plugin.ultramotd.command.utils.CommandHandler;
 import net.md_5.bungee.api.CommandSender;
@@ -19,15 +20,16 @@ public class MaintenanceCommands extends CommandHandler {
         registerSubCommand(new ToggleCommand(this, "toggle", "t"));
         registerSubCommand(new AllowCommand(this, "allow", "a"));
         registerSubCommand(new DenyCommand(this, "deny", "d"));
+        registerSubCommand(new SkipCommand(this, "skip"));
     }
 
     @Override
-    public Void noArgs(CommandSender sender) {
+    public Void noArgs(@NotNull CommandSender sender) {
         return parent.noArgs(sender);
     }
 
     @Override
-    public Void noPermission(CommandSender sender) {
+    public Void noPermission(@NotNull CommandSender sender) {
         return parent.noPermission(sender);
     }
 }

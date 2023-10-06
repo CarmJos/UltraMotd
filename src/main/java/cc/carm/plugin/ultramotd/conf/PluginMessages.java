@@ -55,6 +55,8 @@ public class PluginMessages extends ConfigurationRoot {
                     "&8-&7 允许玩家在维护期间进入服务器。",
                     "&8#&f maintenance deny &e<玩家名>",
                     "&8-&7 不再允许玩家在维护期间进入服务器。",
+                    "&8#&f maintenance skip &e[天数]",
+                    "&8-&7 跳过对应天数的定时维护（0代表当天，小于0则重置)",
                     "&8#&f reload",
                     "&8-&7 重载插件配置文件。"
             )

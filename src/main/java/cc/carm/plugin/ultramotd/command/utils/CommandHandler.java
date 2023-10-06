@@ -33,15 +33,15 @@ public abstract class CommandHandler extends Command implements NamedExecutor, T
         this.plugin = plugin;
     }
 
-    public abstract Void noArgs(CommandSender sender);
+    public abstract Void noArgs(@NotNull CommandSender sender);
 
-    public Void unknownCommand(CommandSender sender, String[] args) {
+    public Void unknownCommand(@NotNull CommandSender sender, String[] args) {
         return noArgs(sender);
     }
 
-    public abstract Void noPermission(CommandSender sender);
+    public abstract Void noPermission(@NotNull CommandSender sender);
 
-    public Void onException(CommandSender sender, SubCommand<?> cmd, Exception ex) {
+    public Void onException(@NotNull CommandSender sender, SubCommand<?> cmd, Exception ex) {
         sender.sendMessage("Error occurred when executing " + cmd.getIdentifier() + ": " + ex.getLocalizedMessage());
         ex.printStackTrace();
         return null;

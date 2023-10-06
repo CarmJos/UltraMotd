@@ -19,13 +19,13 @@ public class MainCommand extends CommandHandler {
     }
 
     @Override
-    public Void noArgs(CommandSender sender) {
+    public Void noArgs(@NotNull CommandSender sender) {
         PluginMessages.COMMAND_USAGE.send(sender);
         return null;
     }
 
     @Override
-    public Void noPermission(CommandSender sender) {
+    public Void noPermission(@NotNull CommandSender sender) {
         PluginMessages.NO_PERMISSION.send(sender);
         return null;
     }

@@ -25,9 +25,7 @@ public class SkipCommand extends SubCommand<MaintenanceCommands> {
         if (args.length > 0) {
             try {
                 days = Integer.parseInt(args[0]);
-            } catch (NumberFormatException e) {
-                days = 0;
-                return null;
+            } catch (NumberFormatException ignored) {
             }
         }
 
@@ -38,6 +36,7 @@ public class SkipCommand extends SubCommand<MaintenanceCommands> {
             PluginMessages.MAINTENANCE.SCHEDULE_ENABLE.send(sender);
         } else {
             LocalDate skipUntil = LocalDate.now().plusDays(days);
+            manager.setSkipUntil(skipUntil);
             PluginMessages.MAINTENANCE.SCHEDULE_SKIP.send(sender, skipUntil.format(DateTimeFormatter.ISO_DATE), days + 1);
         }
         return null;
