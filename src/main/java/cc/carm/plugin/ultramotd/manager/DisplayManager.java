@@ -109,8 +109,8 @@ public class DisplayManager {
         }
     }
 
-    public @Nullable DisplayContent getDisplay(@NotNull InetSocketAddress address) {
-        return getDisplay(address.getHostName());
+    public @Nullable DisplayContent getDisplay(@Nullable InetSocketAddress address) {
+        return getDisplay(address == null ? null : address.getHostName());
     }
 
     public @Nullable DisplayContent getDisplay(String hostname) {
