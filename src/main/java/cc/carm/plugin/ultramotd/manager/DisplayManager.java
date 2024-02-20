@@ -115,7 +115,9 @@ public class DisplayManager {
 
     public @Nullable DisplayContent getDisplay(String hostname) {
         List<DisplayContent> displays = getMatchedContents(hostname);
-        if (displays.isEmpty()) displays = getMatchedContents(null);
+        if (hostname != null && displays.isEmpty()) {
+            displays = getMatchedContents(null);
+        }
         if (displays.isEmpty()) return null;
 
         Collections.shuffle(displays);
