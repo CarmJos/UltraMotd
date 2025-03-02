@@ -3,6 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>common</module>
+        <module>platform/bungee</module>
+        <module>platform/velocity</module>
+    </modules>
     <properties>
         <project.jdk.version>8</project.jdk.version>
         <project.package>${project.groupId}.ultramotd</project.package>
@@ -12,81 +17,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
-        <easyplugin.version>1.5.12</easyplugin.version>
-        <mineconfig.version>2.9.3</mineconfig.version>
+        <deps.easyplugin.version>1.5.12</deps.easyplugin.version>
+        <deps.easyconf.version>4.0.8</deps.easyconf.version>
+        <deps.adventure.verion>4.19.0</deps.adventure.verion>
     </properties>
     <groupId>cc.carm.plugin</groupId>
-    <artifactId>ultramotd</artifactId>
+    <artifactId>ultramotd-parent</artifactId>
     <version>1.2.2</version>
-    <packaging>jar</packaging>
-
-    <dependencies>
-
-        <dependency>
-            <groupId>de.themoep</groupId>
-            <artifactId>minedown</artifactId>
-            <version>1.7.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.carm.lib</groupId>
-            <artifactId>easyplugin-utils</artifactId>
-            <version>${easyplugin.version}</version>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.carm.lib</groupId>
-            <artifactId>githubreleases4j</artifactId>
-            <version>1.3.2</version>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.carm.lib</groupId>
-            <artifactId>easyconfiguration-yaml</artifactId>
-            <version>3.9.1</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.carm.lib</groupId>
-            <artifactId>mineconfiguration-bungee</artifactId>
-            <version>${mineconfig.version}</version>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bungeecord</artifactId>
-            <version>3.1.0</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.waterfallmc</groupId>
-            <artifactId>waterfall-api</artifactId>
-            <version>1.18-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>26.0.2</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+    <packaging>pom</packaging>
 
     <name>UltraMOTD</name>
     <description>
@@ -156,6 +94,24 @@
         </repository>
 
     </repositories>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>26.0.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <distributionManagement>
         <downloadUrl>https://github.com/CarmJos/UltraMOTD/releases</downloadUrl>
