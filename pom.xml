@@ -19,7 +19,7 @@
 
         <deps.easyplugin.version>1.5.12</deps.easyplugin.version>
         <deps.easyconf.version>4.0.11</deps.easyconf.version>
-        <deps.adventure.verion>4.19.0</deps.adventure.verion>
+        <deps.adventure.verion>4.20.0</deps.adventure.verion>
     </properties>
     <groupId>cc.carm.plugin</groupId>
     <artifactId>ultramotd-parent</artifactId>
